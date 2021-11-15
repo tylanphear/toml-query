@@ -1,0 +1,23 @@
+defpackage toml-query/main:
+  import core
+  import toml/parser
+  import toml/table
+  import toml/file
+  import toml/value
+
+defn main ():
+  val input-file = command-line-arguments()[1]
+
+  val table = table $ parse-file(slurp(input-file))
+
+  var error? = false
+
+  for query in command-line-arguments()[2 to false] do:
+    match(get?(table, query)):
+      (v: TomlValue): println(v)
+      (_: False): error? = true
+
+  if error?:
+    exit(1)
+
+main()

@@ -1,0 +1,4 @@
+name = "toml-query"
+version = "0.1.0"
+[dependencies]
+stanza-toml = "tylanphear/stanza-toml|0.1.5"
