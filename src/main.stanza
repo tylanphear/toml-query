@@ -6,6 +6,10 @@ defpackage toml-query/main:
   import toml/value
 
 defn main ():
+  if length(command-line-arguments()) < 2:
+    println(STANDARD-ERROR-STREAM, "usage: tq <path-to-toml-file> [<queries>...]")
+    exit(1)
+
   val input-file = command-line-arguments()[1]
 
   val table = table $ parse-file(slurp(input-file))
